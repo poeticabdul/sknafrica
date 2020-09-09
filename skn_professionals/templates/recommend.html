@@ -1,0 +1,142 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+
+{% block title %} Recommend A Professional - She Knows Network{% endblock %}
+
+
+{% block content %}
+
+<main class="content">
+
+    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    </div> -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    	<div class="col-xl-9">
+	    	<a href="/"><img class="mx-auto d-block" height="100" width="100" src="media/skn_logo.jpg"></a>
+		</div>
+    </div>
+
+    
+
+    <div class="row">
+        <div class="col-12 col-xl-9">
+            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                <br>
+
+                <h2 class="h5 mb-4">About You</h2>
+                <form method="POST" action="/recommend-professional">
+                    {% csrf_token %}
+                    <div class="row">
+                    	<div class="col-md-2 mb-3">
+                    		<div class="errors-ui">{{ form.non_field_errors }}</div>
+                            <label for="id_title_of_recommender">Title</label>
+                             <div class="errors-ui">{{ form.title_of_recommender.errors }}</div>
+                            <select class="form-select mb-0" id="id_title_of_recommender" name="title_of_recommender" aria-label="Select country of residence" required>
+                                {% for val, name in form.fields.title_of_recommender.choices %}
+                                    <option value="{{val}}">{{name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <div>
+                                <label for="id_recommender_first_name">First Name</label>
+                                <div class="errors-ui">{{ form.recommender_first_name.errors }}</div>
+                                <input class="form-control" id="id_recommender_first_name" name="recommender_first_name" type="text" placeholder="Enter your first name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <div>
+                                <label for="id_recommender_last_name">Last Name</label>
+                                <div class="errors-ui">{{ form.last_name.errors }}</div>
+                                <input class="form-control" id="id_recommender_last_name" name="recommender_last_name" type="text" placeholder="Also your last name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_recommender_phone_number">Phone Number</label>
+                                 <div class="errors-ui">{{ form.recommender_phone_number.errors }}</div>
+                                <input class="form-control" id="id_recommender_phone_number" name="recommender_phone_number" type="tel" placeholder="+233245000000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_recommender_email">Email</label>
+                                 <div class="errors-ui">{{ form.recommender_email.errors }}</div>
+                                <input class="form-control" id="id_recommender_email" name="recommender_email" type="text" placeholder="example@gmail.com" required>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_let_professional_know">Let The Professional Know I recommended Her</label>
+                                 <div class="errors-ui">{{ form.let_professional_know.errors }}</div>
+                                <select class="form-select mb-0" id="id_let_professional_know" name="let_professional_know" aria-label="Select level of expertise" required>
+                                {% for val, name in form.fields.let_professional_know.choices %}
+                                    <option value="{{val}}">{{name}}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="h5 my-4">About Professional</h2>
+                    <div class="row">
+                    	<div class="col-md-2 mb-3">
+                            <label for="id_title_of_professional">Title</label>
+                             <div class="errors-ui">{{ form.title_of_professional.errors }}</div>
+                            <select class="form-select mb-0" id="id_title_of_professional" name="title_of_professional" aria-label="Select country of residence" required>
+                                {% for val, name in form.fields.title_of_professional.choices %}
+                                    <option value="{{val}}">{{name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                            <div class="form-group">
+                                <label for="id_professional_full_name">Professional's Full Name</label>
+                                 <div class="errors-ui">{{ form.professional_full_name.errors }}</div>
+                                <input class="form-control" id="id_professional_full_name" name="professional_full_name" type="text" placeholder="Enter the professional's full name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_professional_phone_number">Phone Number</label>
+                                 <div class="errors-ui">{{ form.professional_phone_number.errors }}</div>
+                                <input class="form-control" id="id_professional_phone_number" name="professional_phone_number" type="tel" placeholder="+233245000000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_professional_email">Email</label>
+                                 <div class="errors-ui">{{ form.professional_email.errors }}</div>
+                                <input class="form-control" id="id_professional_email" name="professional_email" type="text" placeholder="example@gmail.com" required>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="id_professional_expertise">Professional's Expertise</label>
+                             <div class="errors-ui">{{ form.professional_expertise.errors }}</div>
+                            <textarea class="form-control" id="id_professional_expertise" name="professional_expertise" type="text" placeholder="Tell us about professional's expertise" rows="4" required></textarea>
+                            <div class="my-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Recommend</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+                            
+    </div>
+
+</main>
+
+{% endblock %}

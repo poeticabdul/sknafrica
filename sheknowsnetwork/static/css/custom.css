@@ -1,0 +1,50 @@
+.skn-logo-align{
+	margin-left: 30px;
+}
+
+.d-block .lvl-expertise{
+	font-size: 12px !important;
+}
+
+.auth-link {
+	font-size: 10px;
+}
+
+.errors-ui{
+	color: red;
+	list-style-type: none;
+}
+
+.service-cta {
+    background: #1da2e0;
+}
+
+.service-cta {
+
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
+
+#services .btn-get-started {
+  font-family: "Dosis", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 3px;
+  transition: 0.5s;
+  margin-top: 25px;
+  margin-left: 40px;
+  color: #fff;
+  background: #49b5e7;
+  text-transform: uppercase;
+}
+
+#services .btn-get-started:hover {
+  background: #76c7ed;
+}
