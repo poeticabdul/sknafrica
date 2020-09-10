@@ -24,20 +24,22 @@
                 <p class="mb-0">PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 we can only allow accredited organizations and individuals ACCESS TO or BE PART OF our database. You may EITHER submit your profile as a professional or contact us with a request for a Professional which we will review and assist you. We cannot give access to the database to marketing organizations of whatever form, students or bloggers and any other parties we may decide. Please do not apply for access if you fall into one of these categories. Your request will go through our verification processes and your request for access will be denied and deleted.</p><hr><br>
 
                 <div class="errors-ui">{{ form.non_field_errors }}</div>
-                <h2 class="h5 mb-4">Personal Information</h2>
+                <div class="form-headers">
+                    <h2 class="h5 mb-4">Personal Information</h2>
+                </div>
                 <form method="POST" action="/profile" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_first_name">First Name</label>
+                                <label for="id_first_name">First Name<span class="skn-required">*</span></label>
                                 <div class="errors-ui">{{ form.first_name.errors }}</div>
                                 <input class="form-control" id="id_first_name" name="first_name" type="text" placeholder="Enter your first name" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_last_name">Last Name</label>
+                                <label for="id_last_name">Last Name<span class="skn-required">*</span></label>
                                 <div class="errors-ui">{{ form.last_name.errors }}</div>
                                 <input class="form-control" id="id_last_name" name="last_name" type="text" placeholder="Also your last name" required>
                             </div>
@@ -46,13 +48,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_phone_number">Phone Number</label>
+                                <label for="id_phone_number">Phone Number<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.phone_number.errors }}</div>
                                 <input class="form-control" id="id_phone_number" name="phone_number" type="tel" placeholder="+233245000000" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="id_country_of_residence">Country Of Residence</label>
+                            <label for="id_country_of_residence">Country Of Residence<span class="skn-required">*</span></label>
                              <div class="errors-ui">{{ form.country_of_residence.errors }}</div>
                             <select class="form-select mb-0" id="id_country_of_residence" name="country_of_residence" aria-label="Select country of residence" required>
                                 {% for val, name in form.fields.country_of_residence.choices %}
@@ -65,14 +67,23 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_town_or_city_of_residence">City/Town</label>
-                                 <div class="errors-ui">{{ form.town_or_city_of_residence.errors }}</div>
-                                <input class="form-control" id="id_town_or_city_of_residence" name="town_or_city_of_residence" type="text" placeholder="Accra, Madina">
+                                <label for="id_region_of_residence">Region<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.region_of_residence.errors }}</div>
+                                <input class="form-control" id="id_region_of_residence" name="region_of_residence" type="text" placeholder="Greater Accra">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_field_of_expertise">Field Of Expertise</label>
+                                <label for="id_town_or_city_of_residence">City/Town<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.town_or_city_of_residence.errors }}</div>
+                                <input class="form-control" id="id_town_or_city_of_residence" name="town_or_city_of_residence" type="text" placeholder="Accra, Madina">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_field_of_expertise">Field Of Expertise<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.field_of_expertise.errors }}</div>
                                 <select class="form-select mb-0" id="id_field_of_expertise" name="field_of_expertise" aria-label="Select field of expertise" required>
                                 {% for val, name in form.fields.field_of_expertise.choices %}
@@ -81,11 +92,25 @@
                             </select>
                             </div>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_other_field_of_expertise_name">If Other Was Selected</label>
+                                 <div class="errors-ui">{{ form.other_field_of_expertise_name.errors }}</div>
+                                <input class="form-control" id="id_other_field_of_expertise_name" name="other_field_of_expertise_name" type="text" placeholder="If you selected Other for field of study.">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_level_of_expertise">Level Of Expertise</label>
+                                <label for="id_specialties_under_expertise">Specialties Under Expertise<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.specialties_under_expertise.errors }}</div>
+                                <input class="form-control" id="id_specialties_under_expertise" name="specialties_under_expertise" type="text" placeholder="3 - 6 searchable terms" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_level_of_expertise">Level Of Expertise<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.level_of_expertise.errors }}</div>
                                 <select class="form-select mb-0" id="id_level_of_expertise" name="level_of_expertise" aria-label="Select level of expertise" required>
                                 {% for val, name in form.fields.level_of_expertise.choices %}
@@ -94,20 +119,46 @@
                             </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="id_job_description">Brief Description Of Job Title<span class="skn-required">*</span></label>
+                             <div class="errors-ui">{{ form.job_description.errors }}</div>
+                            <textarea class="form-control" id="id_job_description" name="job_description" type="text" placeholder="Something brief about your job title" required></textarea>
+                            <div class="my-4"></div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_job_title">Job Title</label>
+                                <label for="id_job_title">Job Title<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.job_title.errors }}</div>
                                 <input class="form-control" id="id_job_title" name="job_title" type="text" placeholder="Senior Software Developer">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_institution">Institution/Organization<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.institution.errors }}</div>
+                                <input class="form-control" id="id_institution" name="institution" type="text" placeholder="What institution do you work for?">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="id_job_description">Brief Description Of Job Title</label>
-                             <div class="errors-ui">{{ form.job_description.errors }}</div>
-                            <textarea class="form-control" id="id_job_description" name="job_description" type="text" placeholder="Something brief about your job title" required></textarea>
+                            <label for="id_profile">Profile<span class="skn-required">*</span></label>
+                             <div class="errors-ui">{{ form.profile.errors }}</div>
+                            <textarea class="form-control" id="id_profile" name="profile" type="text" placeholder="Focus on your position or expertise, relevant work experiences, degrees, achievements, publications, other highlights you deem fit." rows="4" required></textarea>
                             <div class="my-4"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_languages_spoken">Languages Spoken<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.languages_spoken.errors }}</div>
+                                <input class="form-control" id="id_languages_spoken" name="languages_spoken" type="text" placeholder="What languages are you fluent in?">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -120,24 +171,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_languages_spoken">Languages Spoken</label>
-                                 <div class="errors-ui">{{ form.languages_spoken.errors }}</div>
-                                <input class="form-control" id="id_languages_spoken" name="languages_spoken" type="text" placeholder="What languages are you fluent in?">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label for="id_profile">Profile</label>
-                             <div class="errors-ui">{{ form.profile.errors }}</div>
-                            <textarea class="form-control" id="id_profile" name="profile" type="text" placeholder="Focus on your position or expertise, relevant work experiences, degrees, achievements, publications, other highlights you deem fit." rows="4" required></textarea>
-                            <div class="my-4"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label for="id_certify_account">Certify My Account</label>
+                                <label for="id_certify_account">Certify My Account<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.certify_account.errors }}</div>
                                 <select class="form-select mb-0" id="id_certify_account" name="certify_account" aria-label="Certify my account" required>
                                 {% for val, name in form.fields.certify_account.choices %}
@@ -146,9 +180,11 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_cv_resume">Attach CV/Resume</label>
+                                <label for="id_cv_resume">Attach CV/Resume<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.cv_resume.errors }}</div>
                                 <div class="form-file mb-3">
                                     <input type="file" class="form-file-input" id="id_cv_resume" name="cv_resume" required>
@@ -159,11 +195,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_photo">Attach A Professional Photo</label>
+                                <label for="id_photo">Attach A Professional Photo<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.photo.errors }}</div>
                                 <div class="form-file mb-3">
                                     <input type="file" class="form-file-input" id="id_photo" name="photo" required>
@@ -175,7 +209,9 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="h5 my-4">Assistant Information/Referees</h2>
+                    <div class="form-headers">
+                        <h2 class="h5 mb-4">Assistant Information/Referees (Optional)</h2>
+                    </div>
                     <div class="row">
                         <div class="col-sm-8 mb-3">
                             <div class="form-group">
@@ -205,28 +241,28 @@
                         <strong class="my-4"> Referee 1 </strong>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_one_full_name">Full name</label>
+                                <label for="id_referee_one_full_name">Full name<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_one_full_name.errors }}</div>
                                 <input class="form-control" id="id_referee_one_full_name" name="referee_one_full_name" type="text" placeholder="Full name" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_one_email">Email</label>
+                                <label for="id_referee_one_email">Email<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_one_email.errors }}</div>
                                 <input class="form-control" id="id_referee_one_email" name="referee_one_email" type="text" placeholder="example@gmail.com" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_one_phone_number">Phone Number</label>
+                                <label for="id_referee_one_phone_number">Phone Number<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_one_phone_number.errors }}</div>
                                 <input class="form-control" id="id_referee_one_phone_number" name="referee_one_phone_number" type="tel" placeholder="+233245000000" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_one_workplace">Company</label>
+                                <label for="id_referee_one_workplace">Company<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_one_workplace.errors }}</div>
                                 <input class="form-control" id="id_referee_one_workplace" name="referee_one_workplace" type="text" placeholder="Company Ltd." required>
                             </div>
@@ -234,37 +270,39 @@
                         <strong class="my-4"> Referee 2 </strong>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_full_name">Full Name</label>
+                                <label for="id_referee_two_full_name">Full Name<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_two_full_name.errors }}</div>
                                 <input class="form-control" id="id_referee_two_full_name" name="referee_two_full_name" type="text" placeholder="Full name" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_email">Email</label>
+                                <label for="id_referee_two_email">Email<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_two_email.errors }}</div>
                                 <input class="form-control" id="id_referee_two_email" name="referee_two_email" type="text" placeholder="example@gmail.com" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_phone_number">Phone Number</label>
+                                <label for="id_referee_two_phone_number">Phone Number<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_two_phone_number.errors }}</div>
                                 <input class="form-control" id="id_referee_two_phone_number" name="referee_two_phone_number" type="tel" placeholder="+233245000000" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_workplace">Company</label>
+                                <label for="id_referee_two_workplace">Company<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.referee_two_workplace.errors }}</div>
                                 <input class="form-control" id="id_referee_two_workplace" name="referee_two_workplace" type="text" placeholder="Company Ltd." required>
                             </div>
                         </div>
                     </div>
-                    <h2 class="h5 my-4">Additional</h2>
+                    <div class="form-headers">
+                        <h2 class="h5 mb-4">Additional</h2>
+                    </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="id_how_did_you_discover_skn">How Did You Find Out About She Knows Network?</label>
+                            <label for="id_how_did_you_discover_skn">How Did You Find Out About She Knows Network?<span class="skn-required">*</span></label>
                              <div class="errors-ui">{{ form.how_did_you_discover_skn.errors }}</div>
                             <select class="form-select mb-0" id="id_how_did_you_discover_skn" name="how_did_you_discover_skn" aria-label="How did you hear about SKN?">
                                 {% for val, name in form.fields.how_did_you_discover_skn.choices %}
@@ -279,7 +317,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="id_terms_and_conditions_confirmed" name="terms_and_conditions_confirmed" required>
                                 <label class="form-check-label" for="id_terms_and_conditions_confirmed">
-                                  By submitting this form, you give consent to She Knows Network and its partners to contact you for your services.
+                                  By submitting this form, you give consent to She Knows Network and its partners to contact you for your services.<span class="skn-required">*</span>
                                 </label>
                                  <div class="errors-ui">{{ form.terms_and_conditions_confirmed.errors }}</div>
                             </div>

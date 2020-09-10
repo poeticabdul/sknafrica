@@ -86,14 +86,18 @@ class ProfessionalProfile(models.Model):
 	phone_number = models.CharField(validators=[phone_regex], max_length=15)
 	country_of_residence = CountryField(blank_label='(Select Country)')
 	nationality = CountryField(blank_label='(Select Country)', blank=True, null=True)
-	town_or_city_of_residence = models.CharField(max_length=150, blank=True, null=True)
+	region_of_residence = models.CharField(max_length=150)
+	town_or_city_of_residence = models.CharField(max_length=150)
 	field_of_expertise = models.CharField(max_length=60, choices=FIELD_OF_EXPERTISE)
+	other_field_of_expertise_name = models.CharField(max_length=150, blank=True)
+	specialties_under_expertise = models.CharField(max_length=150)
 	level_of_expertise = models.CharField(max_length=30, choices=LEVEL_OF_EXPERTISE)
 	job_title = models.CharField(max_length=60)
-	job_description = models.TextField()
+	job_description = models.CharField(max_length=300)
+	institution = models.CharField(max_length=150)
 	link_to_social_media_handle = models.CharField(max_length=150, blank=True, null=True)
-	languages_spoken = models.CharField(max_length=100, blank=True, null=True)
-	profile = models.TextField()
+	languages_spoken = models.CharField(max_length=100)
+	profile = models.CharField(max_length=300)
 	certify_account = models.CharField(max_length=10, choices=CERTIFY_ACCOUNT)
 	cv_resume = models.FileField()
 	assistant_name = models.CharField(max_length=45, blank=True, null=True)
@@ -117,6 +121,32 @@ class ProfessionalProfile(models.Model):
 
 	def __unicode__(self):
 		return self.first_name
+
+
+class RequesterProfile(models.Model):
+
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+
+	requester_full_name = models.CharField(max_length=150)
+	requester_organization = models.CharField(max_length=60)
+	requester_phone_number = models.CharField(validators=[phone_regex], max_length=15)
+	requester_website = models.CharField(max_length=60)
+	requester_photo_id = models.ImageField()
+	referee_one_full_name = models.CharField(max_length=60, blank=True, null=True)
+	referee_one_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+	referee_one_email = models.EmailField(max_length=150, blank=True, null=True)
+	referee_one_social_media_handle = models.CharField(max_length=150, blank=True, null=True)
+	referee_one_workplace = models.CharField(max_length=60, blank=True, null=True)
+	referee_two_full_name = models.CharField(max_length=60, blank=True, null=True)
+	referee_two_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+	referee_two_email = models.EmailField(max_length=150, blank=True, null=True)
+	referee_two_social_media_handle = models.CharField(max_length=150, blank=True, null=True)
+	referee_two_workplace = models.CharField(max_length=60, blank=True, null=True)
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	created_on = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return self.requester_full_name
 
 
 

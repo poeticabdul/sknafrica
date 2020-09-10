@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from skn_professionals.models import ProfessionalProfile
-from skn_professionals.forms import ProfessionalProfileForm, RecommendProfessionalForm
+from skn_professionals.models import ProfessionalProfile, RequesterProfile
+from skn_professionals.forms import ProfessionalProfileForm, RecommendProfessionalForm, RequesterProfileForm
 
 # Create your views here.
 
@@ -24,7 +24,7 @@ def profile(request):
 	if request.method == 'GET':
 
 		user = request.user
-		print("type ====", user.user_type)
+
 		if user.user_type == "Professional":
 
 			try:
@@ -38,6 +38,10 @@ def profile(request):
 				# return render(request, 'profile1.html', {'form': form})
 			else:
 				return render(request, 'profile.html', {'user': request.user, 'profile': profile})
+
+		elif user.user_type == "Partner":
+			return redirect('/requester-profile')
+
 		else:
 			return redirect('/find-professionals')
 	elif request.method == 'POST':
@@ -48,6 +52,7 @@ def profile(request):
 			pro_profile.save()
 			return redirect('/profile')
 		else:
+			print(form.errors)
 			return render(request, 'add_profile.html', {'form': form})
 
 
@@ -74,6 +79,34 @@ def detail_of_professional(request, id_of_professional):
 			professional = None
 
 		return render(request, 'profile_detail.html', {'profile': professional})
+
+
+@login_required
+def requester_profile(request):
+	if request.method == "POST":
+		form = RequesterProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			req_profile = form.save(commit=False)
+			req_profile.user = request.user
+			req_profile.save()
+			return redirect('/find-professionals')
+		else:
+			print(form.errors)
+			return render(request, 'add_requester_profile.html', {'form': form})
+	elif request.method == "GET":
+		try:
+			profile = RequesterProfile.objects.get(user=request.user)
+		except RequesterProfile.DoesNotExist:
+			profile = None
+
+		if profile is None:
+			form = RequesterProfileForm()
+			return render(request, 'add_requester_profile.html', {'form': form})
+			# return render(request, 'profile1.html', {'form': form})
+		else:
+			return redirect('/find-professionals')
+
+
 
 
 

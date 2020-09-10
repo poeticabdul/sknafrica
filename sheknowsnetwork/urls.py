@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from skn_professionals.views import index, profile, find_professionals, detail_of_professional, recommend_professional
+from skn_professionals.views import index, profile, find_professionals, detail_of_professional, recommend_professional, requester_profile
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
 	path('', index, name='index'),
 	path('profile', profile, name='profile'),
+    path('requester-profile', requester_profile, name='requester_profile'),
 	path('find-professionals', find_professionals, name='find_professionals'),
     path('recommend-professional', recommend_professional, name='recommend_professional'),
     path('p/<int:id_of_professional>/', detail_of_professional, name='detail_of_professional'),

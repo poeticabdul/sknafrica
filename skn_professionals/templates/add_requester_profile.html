@@ -1,0 +1,172 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+
+{% block title %} Profile - She Knows Network{% endblock %}
+
+
+{% block content %}
+
+<main class="content">
+
+    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    </div> -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+        <div class="col-xl-9">
+            <a href="/"><img class="mx-auto d-block" height="100" width="100" src="media/skn_logo.jpg"></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-xl-9">
+            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                <br>
+                <p class="mb-0">PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 we can only allow accredited organizations and individuals ACCESS TO or BE PART OF our database. You may EITHER submit your profile as a professional or contact us with a request for a Professional which we will review and assist you. We cannot give access to the database to marketing organizations of whatever form, students or bloggers and any other parties we may decide. Please do not apply for access if you fall into one of these categories. Your request will go through our verification processes and your request for access will be denied and deleted.</p><hr><br>
+
+                <div class="errors-ui">{{ form.non_field_errors }}</div>
+                <div class="form-headers">
+                    <h2 class="h5 mb-4">Personal Information</h2>
+                </div>
+                
+                <form method="POST" action="/requester-profile" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <div>
+                                <label for="id_requester_full_name">Full Name<span class="skn-required">*</span></label>
+                                <div class="errors-ui">{{ form.requester_full_name.errors }}</div>
+                                <input class="form-control" id="id_requester_full_name" name="requester_full_name" type="text" placeholder="Enter your full name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_requester_phone_number">Phone Number<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.requester_phone_number.errors }}</div>
+                                <input class="form-control" id="id_requester_phone_number" name="requester_phone_number" type="tel" placeholder="+233245000000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_requester_organization">Institution/Organization<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.requester_organization.errors }}</div>
+                                <input class="form-control" id="id_requester_organization" name="requester_organization" type="text" placeholder="What organization do you belong to?">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_requester_website">Your website<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.requester_website.errors }}</div>
+                                <input class="form-control" id="id_requester_website" name="requester_website" type="text" placeholder="https://www.company.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_requester_photo_id">Attach A Photo ID<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.requester_photo_id.errors }}</div>
+                                <div class="form-file mb-3">
+                                    <input type="file" class="form-file-input" id="id_requester_photo_id" name="requester_photo_id" required>
+                                    <label class="form-file-label" for="id_photo">
+                                        <span class="form-file-text">Choose file...</span>
+                                        <span class="form-file-button">Browse</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-headers">
+                        <h2 class="h5 mb-4">Referees (This is optional if you provided a photo ID)</h2>
+                    </div>
+                    <div class="row">
+                        <strong class="my-4"> Referee 1 </strong>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_one_full_name">Full name</label>
+                                 <div class="errors-ui">{{ form.referee_one_full_name.errors }}</div>
+                                <input class="form-control" id="id_referee_one_full_name" name="referee_one_full_name" type="text" placeholder="Full name">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_one_email">Email</label>
+                                 <div class="errors-ui">{{ form.referee_one_email.errors }}</div>
+                                <input class="form-control" id="id_referee_one_email" name="referee_one_email" type="text" placeholder="example@gmail.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_one_phone_number">Phone Number</label>
+                                 <div class="errors-ui">{{ form.referee_one_phone_number.errors }}</div>
+                                <input class="form-control" id="id_referee_one_phone_number" name="referee_one_phone_number" type="tel" placeholder="+233245000000">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_one_workplace">Company</label>
+                                 <div class="errors-ui">{{ form.referee_one_workplace.errors }}</div>
+                                <input class="form-control" id="id_referee_one_workplace" name="referee_one_workplace" type="text" placeholder="Company Ltd.">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <div class="form-group">
+                                    <label for="id_referee_one_social_media_handle">Link To Social Media Handle</label>
+                                     <div class="errors-ui">{{ form.referee_one_social_media_handle.errors }}</div>
+                                    <input class="form-control" id="id_referee_one_social_media_handle" name="referee_one_social_media_handle" type="text" placeholder="Provide link to a social media handle">
+                                </div>
+                            </div>
+                        </div>
+                        <strong class="my-4"> Referee 2 </strong>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_two_full_name">Full Name</label>
+                                 <div class="errors-ui">{{ form.referee_two_full_name.errors }}</div>
+                                <input class="form-control" id="id_referee_two_full_name" name="referee_two_full_name" type="text" placeholder="Full name">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_two_email">Email</label>
+                                 <div class="errors-ui">{{ form.referee_two_email.errors }}</div>
+                                <input class="form-control" id="id_referee_two_email" name="referee_two_email" type="text" placeholder="example@gmail.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_two_phone_number">Phone Number</label>
+                                 <div class="errors-ui">{{ form.referee_two_phone_number.errors }}</div>
+                                <input class="form-control" id="id_referee_two_phone_number" name="referee_two_phone_number" type="tel" placeholder="+233245000000">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="id_referee_two_workplace">Company</label>
+                                 <div class="errors-ui">{{ form.referee_two_workplace.errors }}</div>
+                                <input class="form-control" id="id_referee_two_workplace" name="referee_two_workplace" type="text" placeholder="Company Ltd.">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <div class="form-group">
+                                    <label for="id_referee_two_social_media_handle">Link To Social Media Handle</label>
+                                     <div class="errors-ui">{{ form.referee_two_social_media_handle.errors }}</div>
+                                    <input class="form-control" id="id_referee_two_social_media_handle" name="referee_two_social_media_handle" type="text" placeholder="Provide link to a social media handle">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Submit Information</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+                            
+    </div>
+
+</main>
+
+{% endblock %}

@@ -10,6 +10,24 @@
 	font-size: 10px;
 }
 
+.skn-required {
+  color: #ff0000;
+}
+
+.form-headers{
+  height: 40px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #34495e;
+  margin-bottom: 15px;
+}
+
+.form-headers h2{
+  padding: 5px 5px;
+  color: #fff;
+  position: relative;
+}
+
 .errors-ui{
 	color: red;
 	list-style-type: none;
