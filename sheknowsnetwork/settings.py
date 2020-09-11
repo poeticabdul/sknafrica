@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8!3_@1)+*0=h+rrv9eu1z*55le8a9y*4bg_*clie+rwb8+1-)$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -173,6 +173,29 @@ if not DEBUG:
     EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+
+
+
+AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork"
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# s3 static settings
+STATIC_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
+# s3 public media settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
+
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+
+SENDGRID_API_KEY = "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"
+
 
 
 # Database
