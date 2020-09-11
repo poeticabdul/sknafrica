@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_countries',
+    'storages',
     
 ]
 
@@ -97,16 +98,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGOUT_ON_GET = True
 
 
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-# SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-# SENDGRID_API_KEY = "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"
-
-SENDGRID_API_KEY = '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'
-
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-
-
-
 AUTH_USER_MODEL = 'skn_professionals.User'
 
 
@@ -114,22 +105,6 @@ ACCOUNT_FORMS = {
     'signup': 'sheknowsnetwork.forms.CustomSignupForm',
 }
 
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-if DEBUG:
-    
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'sheknowsnetwork',
-            'USER': 'sheknowsnetwork',
-            'PASSWORD': 'sheknowsnetwork',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
 
 
 # Password validation
@@ -168,9 +143,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATIC_ROOT = 'staticfiles'
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -181,8 +153,54 @@ STATICFILES_DIRS = (
 )
 
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+if not DEBUG:
 
-MEDIA_URL = '/media/'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
+
+    EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+
+    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+if DEBUG:
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'sheknowsnetwork',
+            'USER': 'sheknowsnetwork',
+            'PASSWORD': 'sheknowsnetwork',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+
+    STATIC_URL = '/static/'
+
+    STATIC_ROOT = 'staticfiles'
+
+    MEDIA_URL = '/media/'
+
+    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
+
+
+
 
 django_heroku.settings(locals())

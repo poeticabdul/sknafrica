@@ -1,6 +1,6 @@
 {% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with current_site.name as site_name %}Hello {{ user_display }},
 
-Thank you for registering as a professional at She Knows Network.
+Thank you for registering at She Knows Network.
 
 Confirming your account will give you full access to the SKN platform and allow
 you to update your profile and view other professionals.
