@@ -6,3 +6,7 @@ class StaticStorage(S3Boto3Storage):
 class MediaStorage(S3Boto3Storage):    
     location = 'media'    
     file_overwrite = False
+
+class PublicMediaStorage(S3Boto3Storage):
+    location = 'media/public'
+    file_overwrite = False

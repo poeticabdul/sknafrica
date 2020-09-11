@@ -166,7 +166,7 @@ if not DEBUG:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
     STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
     # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
+    PUBLIC_MEDIA_LOCATION = 'media/public'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
 
