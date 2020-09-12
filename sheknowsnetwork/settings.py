@@ -214,13 +214,13 @@ if DEBUG:
         }
     }
 
-    STATIC_URL = '/static/'
+    # STATIC_URL = '/static/'
 
-    STATIC_ROOT = 'staticfiles'
+    # STATIC_ROOT = 'staticfiles'
 
-    MEDIA_URL = '/media/'
+    # MEDIA_URL = '/media/'
 
-    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+    # MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 
 
