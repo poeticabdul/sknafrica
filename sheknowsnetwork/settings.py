@@ -143,7 +143,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
 STATIC_ROOT = 'staticfiles'
 
@@ -160,8 +159,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -190,6 +187,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork"
+
+S3_URL = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+STATIC_URL = S3_URL + 'static/'
+MEDIA_URL = S3_URL + 'media/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
@@ -227,16 +229,6 @@ if DEBUG:
             'PORT': '',
         }
     }
-
-    # STATIC_URL = '/static/'
-
-    # STATIC_ROOT = 'staticfiles'
-
-    # MEDIA_URL = '/media/'
-
-    # MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
-
 
 
 
