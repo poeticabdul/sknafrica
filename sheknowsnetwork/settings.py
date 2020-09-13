@@ -143,6 +143,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_URL = '/static/'
+
+STATIC_ROOT = 'staticfiles'
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -157,6 +160,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # if not DEBUG:
@@ -183,18 +190,10 @@ STATICFILES_FINDERS = (
 AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork"
-AWS_DEFAULT_ACL = None
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# s3 static settings
-STATIC_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
-# s3 public media settings
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
