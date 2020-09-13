@@ -199,7 +199,7 @@ MEDIA_URL = S3_URL + 'media/'
 
 STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
 
- DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
+DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -214,7 +214,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "info@moonaga.com"
+DEFAULT_FROM_EMAIL = "info@sknafrica.com"
 
 
 
@@ -227,8 +227,8 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'sheknowsnetwork',
-            'USER': 'sheknowsnetwork',
-            'PASSWORD': 'sheknowsnetwork',
+            'USER': 'poeticabdul',
+            'PASSWORD': 'password',
             'HOST': 'localhost',
             'PORT': '',
         }
@@ -237,3 +237,5 @@ if DEBUG:
 
 
 django_heroku.settings(locals())
+
+
