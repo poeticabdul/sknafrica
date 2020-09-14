@@ -11,9 +11,9 @@ class User(AbstractUser):
     USER_TYPE = (
         ('Professional', 'Professional'),
         ('Partner', 'Partner'),
-        ('Other', 'Other'),
+        ('Requesting Agency', 'Requesting Agency'),
     )
-    user_type = models.CharField(max_length=15, choices=USER_TYPE, default="Professional")
+    user_type = models.CharField(max_length=20, choices=USER_TYPE, default="Professional")
 
 
 
@@ -56,7 +56,7 @@ class ProfessionalProfile(models.Model):
 	LEVEL_OF_EXPERTISE = (
 		('Early Career: 3-6 Years', 'Early Career: 3-6 Years'),
 		('Mid Career: 7-12 Years', 'Mid Career: 7-12 Years'),
-		('Experienced: 12+ Years', 'Experienced 12+ Years'),
+		('Experienced: 12+ Years', 'Experienced: 12+ Years'),
 	)
 
 	DISCOVER_SKN = (
@@ -125,6 +125,11 @@ class ProfessionalProfile(models.Model):
 
 class RequesterProfile(models.Model):
 
+	APPROVED = (
+		('Yes', 'Yes'),
+		('No', 'No'),
+	)
+
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
 	requester_full_name = models.CharField(max_length=150)
@@ -143,6 +148,7 @@ class RequesterProfile(models.Model):
 	referee_two_social_media_handle = models.CharField(max_length=150, blank=True, null=True)
 	referee_two_workplace = models.CharField(max_length=60, blank=True, null=True)
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	admin_approved = models.CharField(max_length=5, choices=APPROVED, default="No")
 	created_on = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):

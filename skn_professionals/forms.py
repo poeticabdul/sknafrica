@@ -12,7 +12,7 @@ class ProfessionalProfileForm(forms.ModelForm):
 class RequesterProfileForm(forms.ModelForm):
     class Meta:
         model = RequesterProfile
-        exclude = ['user', 'created_on']
+        exclude = ['user', 'created_on', 'admin_approved']
 
 
 

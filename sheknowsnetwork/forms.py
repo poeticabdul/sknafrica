@@ -5,7 +5,7 @@ class CustomSignupForm(SignupForm):
     USER_TYPE = (
         ('Professional', 'Professional'),
         ('Partner', 'Partner'),
-        ('Other', 'Other'),
+        ('Requesting Agency', 'Requesting Agency'),
     )
     user_type = forms.CharField(widget=forms.Select(choices=USER_TYPE))
 

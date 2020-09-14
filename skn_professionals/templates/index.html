@@ -11,7 +11,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/media/skn-logo-initials.png" rel="icon">
+  <link href="{% static 'img/skn-logo-initials.png' %}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -42,13 +42,13 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="/" class="logo mr-auto"><img src="skn-logo-initials.png" alt="" class="img-fluid"></a>
+      <a href="/" class="logo mr-auto"><img src="{% static 'img/skn_logo.png' %}" alt="" class="img-fluid"></a>
       <!-- Uncomment below if you prefer to use text as a logo -->
       <!-- <h1 class="logo mr-auto"><a href="index.html">Butterfly</a></h1> -->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="/">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#team">Team</a></li>
@@ -71,7 +71,7 @@
           <div><a href="/accounts/signup" class="btn-get-started scrollto">Register As A Professional</a></div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="/media/hero-img.png" class="img-fluid" alt="">
+          <img src="{% static 'img/hero-img.png' %}" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -89,13 +89,13 @@
 
           <div class="col-lg-6 col-md-4 col-6">
             <div class="client-logo">
-              <img src="/media/exxonmobil-bw.png" class="img-fluid" alt="">
+              <img src="{% static 'img/exxonmobil-bw.png' %}" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-6 col-md-4 col-6">
             <div class="client-logo">
-              <img src="/media/ayainstitute-bw.png" class="img-fluid" alt="">
+              <img src="{% static 'img/ayainstitute-bw.png' %}" class="img-fluid" alt="">
             </div>
           </div>
 
@@ -211,7 +211,7 @@
         <div class="row">
           <div class="col-xl-5 col-lg-6 d-flex justify-content-center video-box ">
             <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a> -->
-            <img src="/media/skn-red.jpg">
+            <img src="{% static 'img/skn-red.jpg' %}">
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
