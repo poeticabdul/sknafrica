@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load account %}
 
-{% block title %} Log in - She Knows Network{% endblock %}
+{% block head_title %} My Profile - She Knows Network{% endblock %}
 
 
 {% block content %}
@@ -133,7 +133,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <div>
-                                                    <p><a href="{{profile.cv_resume.url}}">View CV/Resume</a></p>
+                                                    <p><a target="_blank" href="{{profile.cv_resume.url}}">View CV/Resume</a></p>
                                                 </div>
                                             </div>
                                         </div>

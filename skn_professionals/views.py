@@ -9,15 +9,10 @@ from skn_professionals.forms import ProfessionalProfileForm, RecommendProfession
 
 def index(request):
 	if request.method == 'GET':
-		try:
-			professionals = ProfessionalProfile.objects.all()[:4]
-		except ProfessionalProfile.DoesNotExist:
-			professionals = None
 
-		return render(request, 'index.html', {'professionals': professionals})
+		return redirect('/accounts/signup')
 
 
-    # return render(request, 'find1.html')
 
 @login_required
 def profile(request):
@@ -52,7 +47,6 @@ def profile(request):
 			pro_profile.save()
 			return redirect('/profile')
 		else:
-			print(form.errors)
 			return render(request, 'add_profile.html', {'form': form})
 
 
@@ -81,6 +75,7 @@ def detail_of_professional(request, id_of_professional):
 		return render(request, 'profile_detail.html', {'profile': professional})
 
 
+
 @login_required
 def requester_profile(request):
 	if request.method == "POST":
@@ -91,7 +86,6 @@ def requester_profile(request):
 			req_profile.save()
 			return redirect('/find-professionals')
 		else:
-			print(form.errors)
 			return render(request, 'add_requester_profile.html', {'form': form})
 	elif request.method == "GET":
 		try:
@@ -102,7 +96,6 @@ def requester_profile(request):
 		if profile is None:
 			form = RequesterProfileForm()
 			return render(request, 'add_requester_profile.html', {'form': form})
-			# return render(request, 'profile1.html', {'form': form})
 		else:
 			return redirect('/find-professionals')
 
