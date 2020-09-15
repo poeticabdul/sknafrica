@@ -21,8 +21,6 @@ def profile(request):
 
 		user = request.user
 
-		print("user type is =====", user.user_type)
-
 		if user.user_type == "Professional":
 
 			try:

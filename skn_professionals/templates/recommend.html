@@ -13,7 +13,7 @@
     </div> -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     	<div class="col-xl-9">
-	    	<a href="/"><img class="mx-auto d-block" height="100" width="100" src="{% static 'img/skn_logo.png' %}"></a>
+	    	<a href="/"><img class="mx-auto d-block" src="{% static 'img/skn_logo.png' %}"></a>
 		</div>
     </div>
 
@@ -24,7 +24,13 @@
             <div class="card card-body bg-white border-light shadow-sm mb-4">
                 <br>
 
-                <h2 class="h5 mb-4">About You</h2>
+                <div class="text-center text-md-center mb-4 mt-md-0">
+                    <h1 class="mb-0 h3">Recommend A Professional</h1>
+                </div>
+
+                <div class="form-headers">
+                    <h2 class="h5 mb-4">About You</h2>
+                </div>
                 <form method="POST" action="/recommend-professional">
                     {% csrf_token %}
                     <div class="row">
@@ -83,7 +89,10 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="h5 my-4">About Professional</h2>
+                    <div class="form-headers">
+                        <h2 class="h5 my-4">About Professional</h2>
+                    </div>
+                    
                     <div class="row">
                     	<div class="col-md-2 mb-3">
                             <label for="id_title_of_professional">Title</label>

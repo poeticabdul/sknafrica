@@ -21,11 +21,23 @@
         <div class="col-12 col-xl-9">
             <div class="card card-body bg-white border-light shadow-sm mb-4">
                 <br>
-                <p class="mb-0">PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 we can only allow accredited organizations and individuals ACCESS TO or BE PART OF our database. You may EITHER submit your profile as a professional or contact us with a request for a Professional which we will review and assist you. We cannot give access to the database to marketing organizations of whatever form, students or bloggers and any other parties we may decide. Please do not apply for access if you fall into one of these categories. Your request will go through our verification processes and your request for access will be denied and deleted.</p><hr><br>
+                <div class="text-center text-md-center mb-4 mt-md-0">
+                    <h1 class="mb-0 h3">Register As A Professional</h1>
+                </div>
+
+                <p class="mb-0">We are excited that you have decided to join the Network of fellow top-level female talents. SKN’s platform invites African Women Executives and Experts from industry and academia to submit their profiles. Kindly provide us with the information below so we can better assist you to connect to the opportunities you seek.</p><hr><br>
 
                 <div class="errors-ui">{{ form.non_field_errors }}</div>
+
                 <div class="form-headers">
-                    <h2 class="h5 mb-4">Personal Information</h2>
+                    <h2 class="h5 mb-4">Step 1: Privacy Policy</h2>
+                </div>
+
+                <p class="mb-0">We take your privacy and information seriously as the SKN community thrives on transparency and trust. PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 the She Knows Network will only use data you have willing submitted and for the purposes submitted for. We do not share your information with any third parties except partners you have consented to by way of processing your data for opportunities. Members of the network and so are our partners are verified and accredited.</p><br>
+
+                
+                <div class="form-headers">
+                    <h2 class="h5 mb-4">Step 2: Personal Details</h2>
                 </div>
                 <form method="POST" action="/profile" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -69,14 +81,14 @@
                             <div class="form-group">
                                 <label for="id_region_of_residence">Region<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.region_of_residence.errors }}</div>
-                                <input class="form-control" id="id_region_of_residence" name="region_of_residence" type="text" placeholder="Greater Accra">
+                                <input class="form-control" id="id_region_of_residence" name="region_of_residence" type="text" placeholder="Greater Accra" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="id_town_or_city_of_residence">City/Town<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.town_or_city_of_residence.errors }}</div>
-                                <input class="form-control" id="id_town_or_city_of_residence" name="town_or_city_of_residence" type="text" placeholder="Accra, Madina">
+                                <input class="form-control" id="id_town_or_city_of_residence" name="town_or_city_of_residence" type="text" placeholder="Accra, Madina" required>
                             </div>
                         </div>
                     </div>
@@ -121,14 +133,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group">
-                            <label for="id_job_description">Brief Description Of Job Title<span class="skn-required">*</span></label>
-                             <div class="errors-ui">{{ form.job_description.errors }}</div>
-                            <textarea class="form-control" id="id_job_description" name="job_description" type="text" placeholder="Something brief about your job title" required></textarea>
-                            <div class="my-4"></div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="id_job_title">Job Title<span class="skn-required">*</span></label>
@@ -142,6 +146,14 @@
                                  <div class="errors-ui">{{ form.institution.errors }}</div>
                                 <input class="form-control" id="id_institution" name="institution" type="text" placeholder="What institution do you work for?">
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="id_job_description">Brief Description Of Job Title<span class="skn-required">*</span></label>
+                             <div class="errors-ui">{{ form.job_description.errors }}</div>
+                            <textarea class="form-control" id="id_job_description" name="job_description" type="text" placeholder="Something brief about your job title" required></textarea>
+                            <div class="my-4"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -164,9 +176,9 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_link_to_social_media_handle">Link To Social Media Handle</label>
+                                <label for="id_link_to_social_media_handle">Link To Online Profile</label>
                                  <div class="errors-ui">{{ form.link_to_social_media_handle.errors }}</div>
-                                <input class="form-control" id="id_link_to_social_media_handle" name="link_to_social_media_handle" type="text" placeholder="Provide link to a social media handle">
+                                <input class="form-control" id="id_link_to_social_media_handle" name="link_to_social_media_handle" type="text" placeholder="e.g. LinkedIn">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -184,7 +196,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_cv_resume">Attach CV/Resume<span class="skn-required">*</span></label>
+                                <label for="id_cv_resume">Attach CV/Resume <span class="field-explainers">(Remove all contact details from CV/Resume)</span><span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.cv_resume.errors }}</div>
                                 <div class="form-file mb-3">
                                     <input type="file" class="form-control" id="id_cv_resume" name="cv_resume" required>
@@ -229,8 +241,10 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <strong class="my-4"> Referee 1 </strong>
+                        <p>We ask that you provide us with a referee or two. We will inform you, If we ever have to contact your referee.</p>
                         <div class="col-md-6 mb-3">
                             <div>
                                 <label for="id_referee_one_full_name">Full name<span class="skn-required">*</span></label>
@@ -289,8 +303,9 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="form-headers">
-                        <h2 class="h5 mb-4">Additional</h2>
+                        <h2 class="h5 mb-4">Step 3: Additional</h2>
                     </div>
                     <div class="row">
                         <div class="form-group">
