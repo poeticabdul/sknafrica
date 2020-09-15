@@ -180,18 +180,18 @@ if not DEBUG:
 
 
 
-# AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
-# AWS_SECRET_ACCESS_KEY = "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"
-# AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork2"
+AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork2"
 
-# S3_URL = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+S3_URL = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-# STATIC_URL = S3_URL + 'static/'
-# MEDIA_URL = S3_URL + 'media/'
+STATIC_URL = S3_URL + 'static/'
+MEDIA_URL = S3_URL + 'media/'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SENDGRID_API_KEY = "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"
@@ -227,13 +227,13 @@ if DEBUG:
         }
     }
 
-    STATIC_URL = '/static/'
+    # STATIC_URL = '/static/'
 
-    STATIC_ROOT = 'staticfiles'
+    # STATIC_ROOT = 'staticfiles'
 
-    MEDIA_URL = '/media/'
+    # MEDIA_URL = '/media/'
 
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
