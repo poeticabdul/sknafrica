@@ -33,12 +33,11 @@ def profile(request):
 			if profile is None:
 				form = ProfessionalProfileForm()
 				return render(request, 'add_profile.html', {'form': form})
-				# return render(request, 'profile1.html', {'form': form})
 			else:
 				return render(request, 'profile.html', {'user': request.user, 'profile': profile})
 
 		elif user.user_type == "Requesting Agency":
-			return redirect('/requester-profile')
+			return redirect('/find-professionals')
 
 		else:
 			return redirect('/find-professionals')
@@ -57,10 +56,27 @@ def profile(request):
 @login_required
 def find_professionals(request):
 	if request.method == 'GET':
+
+		if request.user.user_type == "Requesting Agency":
+
+			try:
+				profile = RequesterProfile.objects.get(user=request.user)
+			except RequesterProfile.DoesNotExist:
+				profile = None
+
+			if profile is None:
+				return redirect('/requester-profile')
+			elif profile.admin_approved == "Yes":
+				pass
+			elif profile.admin_approved == "No":
+				return render(request, 'not_allowed.html')
+
+
 		try:
 			professionals = ProfessionalProfile.objects.filter().order_by('-created_on')
 		except ProfessionalProfile.DoesNotExist:
 			professionals = None
+
 
 		return render(request, 'find.html', {'professionals': professionals})
 
@@ -88,19 +104,7 @@ def requester_profile(request):
 			req_profile = form.save(commit=False)
 			req_profile.user = request.user
 			req_profile.save()
-			return redirect('/find-professionals')
-
-			# req_photo_id = form.cleaned_data['requester_photo_id']
-			# ref_one_email = form.cleaned_data['referee_one_email']
-
-			# if req_photo_id and ref_one_email:
-
-			# 	req_profile = form.save(commit=False)
-			# 	req_profile.user = request.user
-			# 	req_profile.save()
-			# 	return redirect('/find-professionals')
-			# else:
-			# 	raise forms.ValidationError("You need to provide photo id or referees.")
+			return render(request, 'choose_request_service.html')
 
 		else:
 			return render(request, 'add_requester_profile.html', {'form': form})
@@ -113,8 +117,11 @@ def requester_profile(request):
 		if profile is None:
 			form = RequesterProfileForm()
 			return render(request, 'add_requester_profile.html', {'form': form})
-		else:
+		elif profile.admin_approved == "Yes":
 			return redirect('/find-professionals')
+		elif profile.admin_approved == "No":
+			return render(request, 'choose_request_service.html')
+
 
 
 
