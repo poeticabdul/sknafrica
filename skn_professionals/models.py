@@ -136,7 +136,7 @@ class RequesterProfile(models.Model):
 	requester_organization = models.CharField(max_length=60)
 	requester_phone_number = models.CharField(validators=[phone_regex], max_length=15)
 	requester_website = models.CharField(max_length=60)
-	requester_photo_id = models.ImageField()
+	requester_photo_id = models.ImageField(blank=True, null=True)
 	referee_one_full_name = models.CharField(max_length=60, blank=True, null=True)
 	referee_one_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
 	referee_one_email = models.EmailField(max_length=150, blank=True, null=True)

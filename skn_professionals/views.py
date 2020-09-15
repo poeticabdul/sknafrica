@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django import forms
 from skn_professionals.models import ProfessionalProfile, RequesterProfile
 from skn_professionals.forms import ProfessionalProfileForm, RecommendProfessionalForm, RequesterProfileForm
 
@@ -20,6 +21,8 @@ def profile(request):
 
 		user = request.user
 
+		print("user type is =====", user.user_type)
+
 		if user.user_type == "Professional":
 
 			try:
@@ -34,7 +37,7 @@ def profile(request):
 			else:
 				return render(request, 'profile.html', {'user': request.user, 'profile': profile})
 
-		elif user.user_type == "Partner":
+		elif user.user_type == "Requesting Agency":
 			return redirect('/requester-profile')
 
 		else:
@@ -81,10 +84,24 @@ def requester_profile(request):
 	if request.method == "POST":
 		form = RequesterProfileForm(request.POST, request.FILES)
 		if form.is_valid():
+
 			req_profile = form.save(commit=False)
 			req_profile.user = request.user
 			req_profile.save()
 			return redirect('/find-professionals')
+
+			# req_photo_id = form.cleaned_data['requester_photo_id']
+			# ref_one_email = form.cleaned_data['referee_one_email']
+
+			# if req_photo_id and ref_one_email:
+
+			# 	req_profile = form.save(commit=False)
+			# 	req_profile.user = request.user
+			# 	req_profile.save()
+			# 	return redirect('/find-professionals')
+			# else:
+			# 	raise forms.ValidationError("You need to provide photo id or referees.")
+
 		else:
 			return render(request, 'add_requester_profile.html', {'form': form})
 	elif request.method == "GET":
