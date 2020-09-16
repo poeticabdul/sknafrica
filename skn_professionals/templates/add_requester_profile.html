@@ -21,11 +21,21 @@
         <div class="col-12 col-xl-9">
             <div class="card card-body bg-white border-light shadow-sm mb-4">
                 <br>
-                <p class="mb-0">PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 we can only allow accredited organizations and individuals ACCESS TO or BE PART OF our database. You may EITHER submit your profile as a professional or contact us with a request for a Professional which we will review and assist you. We cannot give access to the database to marketing organizations of whatever form, students or bloggers and any other parties we may decide. Please do not apply for access if you fall into one of these categories. Your request will go through our verification processes and your request for access will be denied and deleted.</p><hr><br>
+                <div class="text-center text-md-center mb-4 mt-md-0">
+                    <h1 class="mb-0 h3">Register As A Requesting Agency</h1>
+                </div>
 
                 <div class="errors-ui">{{ form.non_field_errors }}</div>
+
                 <div class="form-headers">
-                    <h2 class="h5 mb-4">Personal Information</h2>
+                    <h2 class="h5 mb-4">Step 1: Privacy Policy</h2>
+                </div>
+
+                <p class="mb-0">We take your privacy and information seriously as the SKN community thrives on transparency and trust. PLEASE NOTE that in compliance with Ghana’s Data Protection Act, 2012 the She Knows Network will only use data you have willing submitted and for the purposes submitted for. We do not share your information with any third parties except partners you have consented to by way of processing your data for opportunities. Members of the network and so are our partners are verified and accredited.</p><br>
+
+                
+                <div class="form-headers">
+                    <h2 class="h5 mb-4">Step 2: Personal Details</h2>
                 </div>
                 
                 <form method="POST" action="/requester-profile" enctype="multipart/form-data">
@@ -74,7 +84,7 @@
                         </div>
                     </div>
                     <div class="form-headers">
-                        <h2 class="h5 mb-4">Referees (This is optional if you provided a photo ID)</h2>
+                        <h2 class="h5 mb-4">Step 3: Referees (This is optional if you provided a photo ID)</h2>
                     </div>
                     <div class="row">
                         <strong class="my-4"> Referee 1 </strong>

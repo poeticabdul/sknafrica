@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8!3_@1)+*0=h+rrv9eu1z*55le8a9y*4bg_*clie+rwb8+1-)$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_countries',
     'storages',
-    
+    'multiselectfield',
 ]
 
 SITE_ID = 1
@@ -161,6 +161,9 @@ STATICFILES_FINDERS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
 if not DEBUG:
 
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -179,32 +182,9 @@ if not DEBUG:
 
 
 
-
-AWS_ACCESS_KEY_ID = "AKIA6LU5OBQ6VIRIXVBI"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "sheknowsnetwork2"
-
-S3_URL = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-STATIC_URL = S3_URL + 'static/'
-MEDIA_URL = S3_URL + 'media/'
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-SENDGRID_API_KEY = "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"
-
-# STATICFILES_STORAGE = 'sheknowsnetwork.storage_backends.StaticStorage'
-
-# DEFAULT_FILE_STORAGE = 'sheknowsnetwork.storage_backends.PublicMediaStorage'
-
-
-
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey' 
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'She Knows Network <info@sknafrica.com>'

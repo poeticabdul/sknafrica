@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import RegexValidator
 from django_countries.fields import CountryField
+from multiselectfield import MultiSelectField
 
 
 class User(AbstractUser):
@@ -78,6 +79,19 @@ class ProfessionalProfile(models.Model):
 		('No', 'No'),
 	)
 
+	AVAILABLE_FOR_INTERESTS = (
+		('Media Engagements', 'Media Engagements'),
+		('Conference Speaking', 'Conference Speaking'),
+		('Board', 'Board'),
+		('Consultancy', 'Consultancy'),
+	)
+
+	WANT_FOR_SERVICES = (
+		('Compensation', 'Compensation'),
+		('Compensation When Offered', 'Compensation When Offered'),
+		('Experience Is My Focus', 'Experience Is My Focus'),
+	)
+
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
 	
@@ -100,6 +114,8 @@ class ProfessionalProfile(models.Model):
 	profile = models.CharField(max_length=300)
 	certify_account = models.CharField(max_length=10, choices=CERTIFY_ACCOUNT)
 	cv_resume = models.FileField()
+	want_for_services = models.CharField(max_length=30, choices=WANT_FOR_SERVICES)
+	available_for_interests = MultiSelectField(choices=AVAILABLE_FOR_INTERESTS)
 	assistant_name = models.CharField(max_length=45, blank=True, null=True)
 	assistant_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
 	assistant_email = models.EmailField(max_length=250, blank=True, null=True)
@@ -107,10 +123,10 @@ class ProfessionalProfile(models.Model):
 	referee_one_phone_number = models.CharField(validators=[phone_regex], max_length=15)
 	referee_one_email = models.EmailField(max_length=150)
 	referee_one_workplace = models.CharField(max_length=60)
-	referee_two_full_name = models.CharField(max_length=60)
-	referee_two_phone_number = models.CharField(validators=[phone_regex], max_length=15)
-	referee_two_email = models.EmailField(max_length=150)
-	referee_two_workplace = models.CharField(max_length=60)
+	referee_two_full_name = models.CharField(max_length=60, blank=True, null=True)
+	referee_two_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+	referee_two_email = models.EmailField(max_length=150, blank=True, null=True)
+	referee_two_workplace = models.CharField(max_length=60, blank=True, null=True)
 	how_did_you_discover_skn = models.CharField(max_length=20, choices=DISCOVER_SKN, default="Other")
 	photo = models.ImageField(blank=True, null=True)
 	terms_and_conditions_confirmed = models.BooleanField()

@@ -196,7 +196,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_cv_resume">Attach CV/Resume <span class="field-explainers">(Remove all contact details from CV/Resume)</span><span class="skn-required">*</span></label>
+                                <label for="id_cv_resume">Attach CV/Resume <span class="field-explainers">(Remove all contact info from CV/Resume)</span><span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.cv_resume.errors }}</div>
                                 <div class="form-file mb-3">
                                     <input type="file" class="form-control" id="id_cv_resume" name="cv_resume" required>
@@ -214,7 +214,7 @@
                         </div>
                     </div>
                     <div class="form-headers">
-                        <h2 class="h5 mb-4">Assistant Information (Optional) / Referees</h2>
+                        <h2 class="h5 mb-4">Step 3: Assistant Information (Optional) / Referees</h2>
                     </div>
                     <div class="row">
                         <div class="col-sm-8 mb-3">
@@ -276,47 +276,82 @@
                         <strong class="my-4"> Referee 2 </strong>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_full_name">Full Name<span class="skn-required">*</span></label>
+                                <label for="id_referee_two_full_name">Full Name</label>
                                  <div class="errors-ui">{{ form.referee_two_full_name.errors }}</div>
-                                <input class="form-control" id="id_referee_two_full_name" name="referee_two_full_name" type="text" placeholder="Full name" required>
+                                <input class="form-control" id="id_referee_two_full_name" name="referee_two_full_name" type="text" placeholder="Full name">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_email">Email<span class="skn-required">*</span></label>
+                                <label for="id_referee_two_email">Email</label>
                                  <div class="errors-ui">{{ form.referee_two_email.errors }}</div>
-                                <input class="form-control" id="id_referee_two_email" name="referee_two_email" type="text" placeholder="example@gmail.com" required>
+                                <input class="form-control" id="id_referee_two_email" name="referee_two_email" type="text" placeholder="example@gmail.com">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_phone_number">Phone Number<span class="skn-required">*</span></label>
+                                <label for="id_referee_two_phone_number">Phone Number</label>
                                  <div class="errors-ui">{{ form.referee_two_phone_number.errors }}</div>
-                                <input class="form-control" id="id_referee_two_phone_number" name="referee_two_phone_number" type="tel" placeholder="+233245000000" required>
+                                <input class="form-control" id="id_referee_two_phone_number" name="referee_two_phone_number" type="tel" placeholder="+233245000000">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="id_referee_two_workplace">Company<span class="skn-required">*</span></label>
+                                <label for="id_referee_two_workplace">Company</label>
                                  <div class="errors-ui">{{ form.referee_two_workplace.errors }}</div>
-                                <input class="form-control" id="id_referee_two_workplace" name="referee_two_workplace" type="text" placeholder="Company Ltd." required>
+                                <input class="form-control" id="id_referee_two_workplace" name="referee_two_workplace" type="text" placeholder="Company Ltd.">
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="form-headers">
-                        <h2 class="h5 mb-4">Step 3: Additional</h2>
+                        <h2 class="h5 mb-4">Step 4: Additional</h2>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="id_how_did_you_discover_skn">How Did You Find Out About She Knows Network?<span class="skn-required">*</span></label>
-                             <div class="errors-ui">{{ form.how_did_you_discover_skn.errors }}</div>
-                            <select class="form-select mb-0" id="id_how_did_you_discover_skn" name="how_did_you_discover_skn" aria-label="How did you hear about SKN?">
-                                {% for val, name in form.fields.how_did_you_discover_skn.choices %}
-                                    <option value="{{val}}">{{name}}</option>
+                            <label for="id_available_for_interests">Available for? <span class="field-explainers">(Tick as many as apply)</span><span class="skn-required">*</span></label>
+                             <div class="errors-ui">{{ form.available_for_interests.errors }}</div>
+                            <!-- <select class="form-select mb-0" id="id_available_for_interests" name="available_for_interests" aria-label="" multiple> -->
+                                {% for val, name in form.fields.available_for_interests.choices %}
+                                    <!-- <option value="{{val}}">{{name}}</option> -->
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="available_for_interests" value="{{val}}" id="id_available_for_interests">
+                                        <label class="form-check-label" for="id_available_for_interests">
+                                          {{name}}
+                                        </label>
+                                    </div>
                                 {% endfor %}
-                            </select>
+                            <!-- </select> -->
                             <div class="my-4"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 mb-3">
+                            <div class="form-group">
+                                <label for="id_how_did_you_discover_skn">For my services, I want<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.want_for_services.errors }}</div>
+                                <select class="form-select mb-0" id="id_want_for_services" name="want_for_services" aria-label="How did you hear about SKN?">
+                                    {% for val, name in form.fields.want_for_services.choices %}
+                                        <option value="{{val}}">{{name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="my-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 mb-3">
+                            <div class="form-group">
+                                <label for="id_how_did_you_discover_skn">How Did You Find Out About She Knows Network?<span class="skn-required">*</span></label>
+                                 <div class="errors-ui">{{ form.how_did_you_discover_skn.errors }}</div>
+                                <select class="form-select mb-0" id="id_how_did_you_discover_skn" name="how_did_you_discover_skn" aria-label="How did you hear about SKN?">
+                                    {% for val, name in form.fields.how_did_you_discover_skn.choices %}
+                                        <option value="{{val}}">{{name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="my-4"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
