@@ -29,14 +29,14 @@
                 </div>
 
                 <div class="form-headers">
-                    <h2 class="h5 mb-4">About You</h2>
+                    <h2 class="h5 mb-4">Step 1: About You</h2>
                 </div>
                 <form method="POST" action="/recommend-professional">
                     {% csrf_token %}
                     <div class="row">
                     	<div class="col-md-2 mb-3">
                     		<div class="errors-ui">{{ form.non_field_errors }}</div>
-                            <label for="id_title_of_recommender">Title</label>
+                            <label for="id_title_of_recommender">Title <span class="skn-required">*</span></label>
                              <div class="errors-ui">{{ form.title_of_recommender.errors }}</div>
                             <select class="form-select mb-0" id="id_title_of_recommender" name="title_of_recommender" aria-label="Select country of residence" required>
                                 {% for val, name in form.fields.title_of_recommender.choices %}
@@ -46,14 +46,14 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <div>
-                                <label for="id_recommender_first_name">First Name</label>
+                                <label for="id_recommender_first_name">First Name <span class="skn-required">*</span></label>
                                 <div class="errors-ui">{{ form.recommender_first_name.errors }}</div>
                                 <input class="form-control" id="id_recommender_first_name" name="recommender_first_name" type="text" placeholder="Enter your first name" required>
                             </div>
                         </div>
                         <div class="col-md-5 mb-3">
                             <div>
-                                <label for="id_recommender_last_name">Last Name</label>
+                                <label for="id_recommender_last_name">Last Name <span class="skn-required">*</span></label>
                                 <div class="errors-ui">{{ form.last_name.errors }}</div>
                                 <input class="form-control" id="id_recommender_last_name" name="recommender_last_name" type="text" placeholder="Also your last name" required>
                             </div>
@@ -62,14 +62,14 @@
                     <div class="row align-items-center">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_recommender_phone_number">Phone Number</label>
+                                <label for="id_recommender_phone_number">Phone Number<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.recommender_phone_number.errors }}</div>
                                 <input class="form-control" id="id_recommender_phone_number" name="recommender_phone_number" type="tel" placeholder="+233245000000" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_recommender_email">Email</label>
+                                <label for="id_recommender_email">Email<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.recommender_email.errors }}</div>
                                 <input class="form-control" id="id_recommender_email" name="recommender_email" type="text" placeholder="example@gmail.com" required>
                             </div>
@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_let_professional_know">Let The Professional Know I recommended Her</label>
+                                <label for="id_let_professional_know">Let The Professional Know I recommended Her<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.let_professional_know.errors }}</div>
                                 <select class="form-select mb-0" id="id_let_professional_know" name="let_professional_know" aria-label="Select level of expertise" required>
                                 {% for val, name in form.fields.let_professional_know.choices %}
@@ -90,12 +90,12 @@
                         </div>
                     </div>
                     <div class="form-headers">
-                        <h2 class="h5 my-4">About Professional</h2>
+                        <h2 class="h5 my-4">Step 2: About Professional</h2>
                     </div>
                     
                     <div class="row">
                     	<div class="col-md-2 mb-3">
-                            <label for="id_title_of_professional">Title</label>
+                            <label for="id_title_of_professional">Title<span class="skn-required">*</span></label>
                              <div class="errors-ui">{{ form.title_of_professional.errors }}</div>
                             <select class="form-select mb-0" id="id_title_of_professional" name="title_of_professional" aria-label="Select country of residence" required>
                                 {% for val, name in form.fields.title_of_professional.choices %}
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-10 mb-3">
                             <div class="form-group">
-                                <label for="id_professional_full_name">Professional's Full Name</label>
+                                <label for="id_professional_full_name">Professional's Full Name<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.professional_full_name.errors }}</div>
                                 <input class="form-control" id="id_professional_full_name" name="professional_full_name" type="text" placeholder="Enter the professional's full name" required>
                             </div>
@@ -114,14 +114,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_professional_phone_number">Phone Number</label>
+                                <label for="id_professional_phone_number">Phone Number<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.professional_phone_number.errors }}</div>
                                 <input class="form-control" id="id_professional_phone_number" name="professional_phone_number" type="tel" placeholder="+233245000000" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label for="id_professional_email">Email</label>
+                                <label for="id_professional_email">Email<span class="skn-required">*</span></label>
                                  <div class="errors-ui">{{ form.professional_email.errors }}</div>
                                 <input class="form-control" id="id_professional_email" name="professional_email" type="text" placeholder="example@gmail.com" required>
                             </div>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="id_professional_expertise">Professional's Expertise</label>
+                            <label for="id_professional_expertise">Professional's Expertise<span class="skn-required">*</span></label>
                              <div class="errors-ui">{{ form.professional_expertise.errors }}</div>
                             <textarea class="form-control" id="id_professional_expertise" name="professional_expertise" type="text" placeholder="Tell us about professional's expertise" rows="4" required></textarea>
                             <div class="my-4"></div>
