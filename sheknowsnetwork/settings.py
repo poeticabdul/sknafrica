@@ -182,9 +182,17 @@ if not DEBUG:
 
 
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey' 
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey' 
+# EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'She Knows Network <info@sknafrica.com>'
+
+
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_HOST_USER = '5e894567dedbbe03ca75565bec497777' 
+EMAIL_HOST_PASSWORD = 'cd70935a5061a8651161193dba4bfe50'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'She Knows Network <info@sknafrica.com>'
@@ -207,13 +215,13 @@ if DEBUG:
         }
     }
 
-    # STATIC_URL = '/static/'
+    STATIC_URL = '/static/'
 
-    # STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = 'staticfiles'
 
-    # MEDIA_URL = '/media/'
+    MEDIA_URL = '/media/'
 
-    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
